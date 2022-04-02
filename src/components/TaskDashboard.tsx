@@ -1,6 +1,19 @@
 import React from 'react';
+import Task from './Task';
 
-function TaskDashboard() {
+type TaskListItem = {
+  task: string;
+  completed: boolean;
+  id: string;
+};
+interface TaskListItemMap {
+  [value: string | number]: TaskListItem;
+}
+interface TaskDashboardProps {
+  taskList: TaskListItemMap;
+}
+
+function TaskDashboard({ taskList }: TaskDashboardProps) {
   return (
     <>
       <div className="filters btn-group stack-exception">
@@ -21,28 +34,9 @@ function TaskDashboard() {
         </button>
       </div>
       <h2 id="list-heading">Tasks remaining</h2>
-      <ul
-        className="todo-list stack-large stack-exception"
-        aria-labelledby="list-heading"
-      >
-        <li className="todo stack-small">
-          <div className="c-cb">
-            <input id="todo-0" type="checkbox" />
-            <label className="todo-label" htmlFor="todo-0">
-              Model Task
-            </label>
-          </div>
-          <div className="btn-group">
-            <button type="button" className="btn">
-              save
-              <span className="visually-hidden" />
-            </button>
-            <button type="button" className="btn btn__danger">
-              Delete <span className="visually-hidden" />
-            </button>
-          </div>
-        </li>
-      </ul>
+      {Object.keys(taskList).map((element) => {
+        return <Task id={element} taskList={taskList} />;
+      })}
     </>
   );
 }
