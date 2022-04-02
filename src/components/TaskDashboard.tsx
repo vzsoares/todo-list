@@ -1,16 +1,9 @@
 import React from 'react';
 import Task from './Task';
+import { TaskListMap } from './AddItemForm';
 
-type TaskListItem = {
-  task: string;
-  completed: boolean;
-  id: string;
-};
-interface TaskListItemMap {
-  [value: string | number]: TaskListItem;
-}
 interface TaskDashboardProps {
-  taskList: TaskListItemMap;
+  taskList: TaskListMap[];
 }
 
 function TaskDashboard({ taskList }: TaskDashboardProps) {
@@ -34,8 +27,8 @@ function TaskDashboard({ taskList }: TaskDashboardProps) {
         </button>
       </div>
       <h2 id="list-heading">Tasks remaining</h2>
-      {Object.keys(taskList).map((element) => {
-        return <Task id={element} taskList={taskList} />;
+      {taskList.map((element) => {
+        return <Task taskData={element} />;
       })}
     </>
   );

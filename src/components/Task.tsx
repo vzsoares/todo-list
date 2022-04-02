@@ -1,10 +1,11 @@
 import React from 'react';
+import { TaskListMap } from './AddItemForm';
 
-interface TaskProps {
-  id: string;
-  taskList: any;
+interface TaskDataProps {
+  taskData: TaskListMap;
 }
-function Task({ id, taskList }: TaskProps) {
+
+function Task({ taskData }: TaskDataProps) {
   return (
     <ul
       className="todo-list stack-large stack-exception"
@@ -14,7 +15,7 @@ function Task({ id, taskList }: TaskProps) {
         <div className="c-cb">
           <input id="todo-0" type="checkbox" />
           <label className="todo-label" htmlFor="todo-0">
-            {taskList[id].task}
+            {taskData.task}
           </label>
         </div>
         <div className="btn-group">

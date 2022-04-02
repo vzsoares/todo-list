@@ -1,43 +1,37 @@
 import React from 'react';
 
-type TaskListItem = {
+export interface TaskListMap {
   task: string;
   completed: boolean;
   id: string;
-};
-interface TaskListItemMap {
-  [value: string | number]: TaskListItem;
 }
 interface AddItemFormProps {
   userInput: string;
   setUserInput: (value: string) => void;
-  taskList: TaskListItemMap;
-  setTaskList: (value: any) => void;
+  taskList: TaskListMap[];
+  setTaskList: (value: TaskListMap[]) => void;
 }
 
-function AddItemForm({
+export function AddItemForm({
   userInput,
   setUserInput,
   taskList,
   setTaskList,
 }: AddItemFormProps) {
-  function getNewTaskList() {
-    const uniqueTaskID = String(new Date().valueOf());
-    const typedTask = userInput;
-    const myReturn: any = { ...taskList };
-    myReturn[uniqueTaskID] = {
-      task: typedTask,
-      completed: false,
-      id: uniqueTaskID,
-    };
-    return myReturn;
-  }
   const domInputId = 'new-todo-input';
+  function addNewTask() {
+    const myNewTask = {
+      task: userInput,
+      completed: false,
+      id: String(new Date().valueOf()),
+    };
+    setTaskList([...taskList, myNewTask]);
+  }
   function handleAddTask(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-
     if (userInput) {
-      setTaskList(getNewTaskList());
+      addNewTask();
+      setUserInput('');
     }
   }
   return (
@@ -62,4 +56,3 @@ function AddItemForm({
     </form>
   );
 }
-export default AddItemForm;
