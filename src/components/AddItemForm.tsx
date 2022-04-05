@@ -1,52 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export interface TaskListMap {
+export interface TaskType {
   task: string;
   completed: boolean;
   id: string;
 }
 interface AddItemFormProps {
-  userInput: string;
-  setUserInput: (value: string) => void;
-  taskList: TaskListMap[];
-  setTaskList: (value: TaskListMap[]) => void;
+  addNewTask: (taskContent: string) => void;
 }
-
-export function AddItemForm({
-  userInput,
-  setUserInput,
-  taskList,
-  setTaskList,
-}: AddItemFormProps) {
-  const domInputId = 'new-todo-input';
-  function addNewTask() {
-    const myNewTask = {
-      task: userInput,
-      completed: false,
-      id: String(new Date().valueOf()),
-    };
-    setTaskList([...taskList, myNewTask]);
-  }
+export function AddItemForm({ addNewTask }: AddItemFormProps) {
+  const [userInput, setUserInput] = useState<string>('');
   function handleAddTask(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (userInput) {
-      addNewTask();
+      addNewTask(userInput);
       setUserInput('');
     }
   }
   return (
     <form onSubmit={(e) => handleAddTask(e)}>
       <h2 className="label-wrapper">
-        <label htmlFor={domInputId} className="label__lg">
+        <label htmlFor="new-todo-input" className="label__lg">
           Lista de tarefas PodCodar
         </label>
       </h2>
       <input
         type="text"
-        id={domInputId}
+        id="new-todo-input"
         className="input input__lg"
         value={userInput}
-        name={domInputId}
+        name="new-todo-input"
         autoComplete="off"
         onChange={(e) => setUserInput(e.target.value)}
       />

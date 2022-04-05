@@ -1,8 +1,8 @@
 import React from 'react';
-import { TaskListMap } from './AddItemForm';
+import { TaskType } from './AddItemForm';
 
 interface TaskDataProps {
-  taskData: TaskListMap;
+  taskData: TaskType;
 }
 
 function Task({ taskData }: TaskDataProps) {
