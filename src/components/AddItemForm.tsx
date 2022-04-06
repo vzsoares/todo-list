@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 
-export interface TaskType {
-  task: string;
-  completed: boolean;
-  id: string;
-}
 interface AddItemFormProps {
   addNewTask: (taskContent: string) => void;
 }
-export function AddItemForm({ addNewTask }: AddItemFormProps) {
+export default function AddItemForm({ addNewTask }: AddItemFormProps) {
   const [userInput, setUserInput] = useState<string>('');
+
   function handleAddTask(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (userInput) {
@@ -17,6 +13,7 @@ export function AddItemForm({ addNewTask }: AddItemFormProps) {
       setUserInput('');
     }
   }
+
   return (
     <form onSubmit={(e) => handleAddTask(e)}>
       <h2 className="label-wrapper">

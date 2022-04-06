@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 import './App.css';
 import Title from './components/Title';
-import { AddItemForm, TaskType } from './components/AddItemForm';
+import AddItemForm from './components/AddItemForm';
+import ITask from './components/Types/ITask';
 import TaskDashboard from './components/TaskDashboard';
 
 function App() {
-  const [taskList, setTaskList] = useState<TaskType[]>([
-    { task: 'Model Task Example', completed: false, id: '123456' },
-  ]);
+  const [taskList, setTaskList] = useState<ITask[]>([]);
+
   function addNewTask(taskContent: string) {
-    const myNewTask = {
+    const newTask = {
       task: taskContent,
       completed: false,
       id: String(new Date().valueOf()),
     };
-    setTaskList([...taskList, myNewTask]);
+    setTaskList([...taskList, newTask]);
   }
+
   return (
     <div className="todoapp stack-large">
       <Title />

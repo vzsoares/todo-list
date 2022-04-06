@@ -1,12 +1,12 @@
 import React from 'react';
 import Task from './Task';
-import { TaskType } from './AddItemForm';
+import ITask from './Types/ITask';
 
 interface TaskDashboardProps {
-  taskList: TaskType[];
+  taskList: ITask[];
 }
 
-function TaskDashboard({ taskList }: TaskDashboardProps) {
+export default function TaskDashboard({ taskList }: TaskDashboardProps) {
   return (
     <>
       <div className="filters btn-group stack-exception">
@@ -28,9 +28,8 @@ function TaskDashboard({ taskList }: TaskDashboardProps) {
       </div>
       <h2 id="list-heading">Tasks remaining</h2>
       {taskList.map((task) => {
-        return <Task taskData={task} />;
+        return <Task key={task.id} taskData={task} />;
       })}
     </>
   );
 }
-export default TaskDashboard;
