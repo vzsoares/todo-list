@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface AddItemFormProps {
-  isEditing: string;
+  editingIndex: string;
   userInput: string;
   addTask: () => void;
   setUserInput: (input: string) => void;
@@ -9,7 +9,7 @@ interface AddItemFormProps {
 }
 
 export default function AddItemForm({
-  isEditing,
+  editingIndex,
   userInput,
   addTask,
   setUserInput,
@@ -18,8 +18,8 @@ export default function AddItemForm({
   function handleAddTask(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (isEditing) {
-      editTask(userInput, isEditing);
+    if (editingIndex) {
+      editTask(userInput, editingIndex);
       return;
     }
 
@@ -46,7 +46,7 @@ export default function AddItemForm({
         onChange={(e) => setUserInput(e.target.value)}
       />
       <button type="submit" className="btn btn__primary btn__lg">
-        {!isEditing ? 'Add Task' : 'save'}
+        {!editingIndex ? 'Add Task' : 'save'}
       </button>
     </form>
   );

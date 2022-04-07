@@ -8,7 +8,7 @@ import TaskDashboard from './components/TaskDashboard';
 function App() {
   const [taskList, setTaskList] = useState<ITask[]>([]);
   const [userInput, setUserInput] = useState<string>('');
-  const [isEditing, setIsEditing] = useState<string>('');
+  const [editingIndex, setEditingIndex] = useState<string>('');
 
   function addTask() {
     const newTask = {
@@ -25,7 +25,7 @@ function App() {
 
   function startEditing(taskID: string) {
     setUserInput([...taskList].find((task) => task.id === taskID)?.task ?? '');
-    setIsEditing(taskID);
+    setEditingIndex(taskID);
   }
 
   function editTask(input: string, taskID: string) {
@@ -38,7 +38,7 @@ function App() {
         return taskReturn;
       }),
     );
-    setIsEditing('');
+    setEditingIndex('');
     setUserInput('');
   }
 
@@ -59,14 +59,14 @@ function App() {
       <Title />
       <AddItemForm
         userInput={userInput}
-        isEditing={isEditing}
+        editingIndex={editingIndex}
         setUserInput={setUserInput}
         addTask={() => addTask()}
         editTask={(input: string, taskID: string) => editTask(input, taskID)}
       />
       <TaskDashboard
         userInput={userInput}
-        isEditing={isEditing}
+        editingIndex={editingIndex}
         taskList={taskList}
         checkTaskBox={(taskID: string) => checkTaskBox(taskID)}
         removeTask={(taskID: string) => removeTask(taskID)}

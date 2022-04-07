@@ -5,7 +5,7 @@ import ITask from './Types/ITask';
 interface TaskDashboardProps {
   taskList: ITask[];
   userInput: string;
-  isEditing: string;
+  editingIndex: string;
   removeTask: (taskID: string) => void;
   checkTaskBox: (taskID: string) => void;
   startEditing: (taskID: string) => void;
@@ -15,7 +15,7 @@ interface TaskDashboardProps {
 export default function TaskDashboard({
   taskList,
   userInput,
-  isEditing,
+  editingIndex,
   removeTask,
   checkTaskBox,
   startEditing,
@@ -76,7 +76,7 @@ export default function TaskDashboard({
           <Task
             key={task.id}
             userInput={userInput}
-            isEditing={isEditing}
+            editingIndex={editingIndex}
             taskData={task}
             checkTaskBox={(taskID: string) => checkTaskBox(taskID)}
             removeTask={(taskID: string) => removeTask(taskID)}

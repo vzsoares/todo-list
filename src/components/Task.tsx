@@ -4,7 +4,7 @@ import ITask from './Types/ITask';
 interface TaskDataProps {
   taskData: ITask;
   userInput: string;
-  isEditing: string;
+  editingIndex: string;
   removeTask: (taskID: string) => void;
   checkTaskBox: (taskID: string) => void;
   startEditing: (taskID: string) => void;
@@ -14,7 +14,7 @@ interface TaskDataProps {
 function Task({
   taskData,
   userInput,
-  isEditing,
+  editingIndex,
   removeTask,
   checkTaskBox,
   startEditing,
@@ -42,12 +42,12 @@ function Task({
             type="button"
             className="btn"
             onClick={() =>
-              isEditing === taskData.id
-                ? editTask(userInput, isEditing)
+              editingIndex === taskData.id
+                ? editTask(userInput, editingIndex)
                 : startEditing(taskData.id)
             }
           >
-            {isEditing === taskData.id ? 'Save' : 'Edit'}
+            {editingIndex === taskData.id ? 'Save' : 'Edit'}
             <span className="visually-hidden" />
           </button>
           <button
