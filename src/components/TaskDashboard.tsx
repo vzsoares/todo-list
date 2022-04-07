@@ -4,9 +4,13 @@ import ITask from './Types/ITask';
 
 interface TaskDashboardProps {
   taskList: ITask[];
+  removeTask: (taskID: string) => void;
 }
 
-export default function TaskDashboard({ taskList }: TaskDashboardProps) {
+export default function TaskDashboard({
+  taskList,
+  removeTask,
+}: TaskDashboardProps) {
   return (
     <>
       <div className="filters btn-group stack-exception">
@@ -28,7 +32,13 @@ export default function TaskDashboard({ taskList }: TaskDashboardProps) {
       </div>
       <h2 id="list-heading">Tasks remaining</h2>
       {taskList.map((task) => {
-        return <Task key={task.id} taskData={task} />;
+        return (
+          <Task
+            key={task.id}
+            taskData={task}
+            removeTask={(taskID: string) => removeTask(taskID)}
+          />
+        );
       })}
     </>
   );

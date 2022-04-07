@@ -3,9 +3,10 @@ import ITask from './Types/ITask';
 
 interface TaskDataProps {
   taskData: ITask;
+  removeTask: (taskID: string) => void;
 }
 
-function Task({ taskData }: TaskDataProps) {
+function Task({ taskData, removeTask }: TaskDataProps) {
   return (
     <ul
       className="todo-list stack-large stack-exception"
@@ -23,7 +24,11 @@ function Task({ taskData }: TaskDataProps) {
             save
             <span className="visually-hidden" />
           </button>
-          <button type="button" className="btn btn__danger">
+          <button
+            onClick={() => removeTask(taskData.id)}
+            type="button"
+            className="btn btn__danger"
+          >
             Delete <span className="visually-hidden" />
           </button>
         </div>

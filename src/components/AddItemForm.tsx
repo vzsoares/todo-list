@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 
 interface AddItemFormProps {
-  addNewTask: (taskContent: string) => void;
+  addTask: (taskContent: string) => void;
 }
-export default function AddItemForm({ addNewTask }: AddItemFormProps) {
+export default function AddItemForm({ addTask }: AddItemFormProps) {
   const [userInput, setUserInput] = useState<string>('');
 
   function handleAddTask(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (userInput) {
-      addNewTask(userInput);
+      addTask(userInput);
       setUserInput('');
     }
   }

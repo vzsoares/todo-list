@@ -8,7 +8,7 @@ import TaskDashboard from './components/TaskDashboard';
 function App() {
   const [taskList, setTaskList] = useState<ITask[]>([]);
 
-  function addNewTask(taskContent: string) {
+  function addTask(taskContent: string) {
     const newTask = {
       task: taskContent,
       completed: false,
@@ -17,13 +17,18 @@ function App() {
     setTaskList([...taskList, newTask]);
   }
 
+  function removeTask(taskID: string) {
+    setTaskList([...taskList].filter((task) => task.id !== taskID));
+  }
+
   return (
     <div className="todoapp stack-large">
       <Title />
-      <AddItemForm
-        addNewTask={(taskContent: string) => addNewTask(taskContent)}
+      <AddItemForm addTask={(taskContent: string) => addTask(taskContent)} />
+      <TaskDashboard
+        taskList={taskList}
+        removeTask={(taskID: string) => removeTask(taskID)}
       />
-      <TaskDashboard taskList={taskList} />
     </div>
   );
 }
