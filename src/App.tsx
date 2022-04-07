@@ -20,22 +20,21 @@ function App() {
   }
 
   function removeTask(taskID: string) {
-    setTaskList([...taskList].filter((task) => task.id !== taskID));
+    setTaskList(taskList.filter((task) => task.id !== taskID));
   }
 
   function startEditing(taskID: string) {
-    setUserInput([...taskList].find((task) => task.id === taskID)?.task ?? '');
+    setUserInput(taskList.find((task) => task.id === taskID)?.task ?? '');
     setEditingIndex(taskID);
   }
 
   function editTask(input: string, taskID: string) {
     setTaskList(
-      [...taskList].map((task) => {
-        const taskReturn = task;
-        if (taskReturn.id === taskID) {
-          taskReturn.task = input;
+      taskList.map((task) => {
+        if (task.id === taskID) {
+          return { ...task, task: input };
         }
-        return taskReturn;
+        return task;
       }),
     );
     setEditingIndex('');
@@ -44,12 +43,11 @@ function App() {
 
   function checkTaskBox(taskID: string) {
     setTaskList(
-      [...taskList].map((task) => {
-        const taskReturn = task;
-        if (taskReturn.id === taskID) {
-          taskReturn.completed = !taskReturn.completed;
+      taskList.map((task) => {
+        if (task.id === taskID) {
+          return { ...task, completed: !task.completed };
         }
-        return taskReturn;
+        return task;
       }),
     );
   }

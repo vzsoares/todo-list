@@ -22,17 +22,17 @@ export default function TaskDashboard({
   editTask,
 }: TaskDashboardProps) {
   const [filter, setFilter] = useState<string>('All');
-  const [displayedTasks, setDisplayedTasks] = useState<ITask[]>([...taskList]);
+  const [displayedTasks, setDisplayedTasks] = useState<ITask[]>(taskList);
 
   function filterDisplayedTasks() {
     if (filter === 'All') {
-      setDisplayedTasks([...taskList]);
+      setDisplayedTasks(taskList);
     }
     if (filter === 'Active') {
-      setDisplayedTasks([...taskList].filter((task) => !task.completed));
+      setDisplayedTasks(taskList.filter((task) => !task.completed));
     }
     if (filter === 'Complete') {
-      setDisplayedTasks([...taskList].filter((task) => task.completed));
+      setDisplayedTasks(taskList.filter((task) => task.completed));
     }
   }
 
