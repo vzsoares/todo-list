@@ -3,10 +3,23 @@ import ITask from './Types/ITask';
 
 interface TaskDataProps {
   taskData: ITask;
+  userInput: string;
+  isEditing: string;
   removeTask: (taskID: string) => void;
+  checkTaskBox: (taskID: string) => void;
+  startEditing: (taskID: string) => void;
+  editTask: (input: string, taskID: string) => void;
 }
 
-function Task({ taskData, removeTask }: TaskDataProps) {
+function Task({
+  taskData,
+  userInput,
+  isEditing,
+  removeTask,
+  checkTaskBox,
+  startEditing,
+  editTask,
+}: TaskDataProps) {
   return (
     <ul
       className="todo-list stack-large stack-exception"
@@ -14,14 +27,27 @@ function Task({ taskData, removeTask }: TaskDataProps) {
     >
       <li className="todo stack-small">
         <div className="c-cb">
-          <input id="todo-0" type="checkbox" />
-          <label className="todo-label" htmlFor="todo-0">
+          <input
+            id={taskData.id}
+            type="checkbox"
+            checked={taskData.completed}
+            onChange={() => checkTaskBox(taskData.id)}
+          />
+          <label className="todo-label" htmlFor={taskData.id}>
             {taskData.task}
           </label>
         </div>
         <div className="btn-group">
-          <button type="button" className="btn">
-            save
+          <button
+            type="button"
+            className="btn"
+            onClick={() =>
+              isEditing === taskData.id
+                ? editTask(userInput, isEditing)
+                : startEditing(taskData.id)
+            }
+          >
+            {isEditing === taskData.id ? 'Save' : 'Edit'}
             <span className="visually-hidden" />
           </button>
           <button

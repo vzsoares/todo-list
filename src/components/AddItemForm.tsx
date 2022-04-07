@@ -1,15 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 interface AddItemFormProps {
-  addTask: (taskContent: string) => void;
+  isEditing: string;
+  userInput: string;
+  addTask: () => void;
+  setUserInput: (input: string) => void;
+  editTask: (input: string, taskID: string) => void;
 }
-export default function AddItemForm({ addTask }: AddItemFormProps) {
-  const [userInput, setUserInput] = useState<string>('');
 
+export default function AddItemForm({
+  isEditing,
+  userInput,
+  addTask,
+  setUserInput,
+  editTask,
+}: AddItemFormProps) {
   function handleAddTask(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    if (isEditing) {
+      editTask(userInput, isEditing);
+      return;
+    }
+
     if (userInput) {
-      addTask(userInput);
+      addTask();
       setUserInput('');
     }
   }
@@ -31,7 +46,7 @@ export default function AddItemForm({ addTask }: AddItemFormProps) {
         onChange={(e) => setUserInput(e.target.value)}
       />
       <button type="submit" className="btn btn__primary btn__lg">
-        Add Task
+        {!isEditing ? 'Add Task' : 'save'}
       </button>
     </form>
   );
