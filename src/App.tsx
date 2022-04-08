@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import './App.css';
 import Title from './components/Title';
 import AddItemForm from './components/AddItemForm';
-import ITask from './components/Types/ITask';
 import TaskDashboard from './components/TaskDashboard';
+import { ITaskItem } from './components/types';
 
 function App() {
-  const [taskList, setTaskList] = useState<ITask[]>([]);
+  const [taskList, setTaskList] = useState<ITaskItem[]>([]);
   const [userInput, setUserInput] = useState<string>('');
   const [editingIndex, setEditingIndex] = useState<string>('');
 

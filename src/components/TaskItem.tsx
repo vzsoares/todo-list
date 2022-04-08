@@ -1,8 +1,8 @@
 import React from 'react';
-import ITask from './Types/ITask';
+import { ITaskItem } from './types';
 
 interface TaskDataProps {
-  taskData: ITask;
+  taskData: ITaskItem;
   userInput: string;
   editingIndex: string;
   removeTask: (taskID: string) => void;
@@ -11,7 +11,7 @@ interface TaskDataProps {
   editTask: (input: string, taskID: string) => void;
 }
 
-function Task({
+function TaskItem({
   taskData,
   userInput,
   editingIndex,
@@ -62,4 +62,4 @@ function Task({
     </ul>
   );
 }
-export default Task;
+export default TaskItem;

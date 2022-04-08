@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Task from './Task';
-import ITask from './Types/ITask';
+import TaskItem from './TaskItem';
+import { ITaskItem, FilterKind } from './types';
 
 interface TaskDashboardProps {
-  taskList: ITask[];
+  taskList: ITaskItem[];
   userInput: string;
   editingIndex: string;
   removeTask: (taskID: string) => void;
@@ -21,8 +21,8 @@ export default function TaskDashboard({
   startEditing,
   editTask,
 }: TaskDashboardProps) {
-  const [filter, setFilter] = useState<string>('All');
-  const [displayedTasks, setDisplayedTasks] = useState<ITask[]>(taskList);
+  const [filter, setFilter] = useState<FilterKind>('All');
+  const [displayedTasks, setDisplayedTasks] = useState<ITaskItem[]>(taskList);
 
   function filterDisplayedTasks() {
     if (filter === 'All') {
@@ -73,7 +73,7 @@ export default function TaskDashboard({
       <h2 id="list-heading">Tasks remaining</h2>
       {displayedTasks.map((task) => {
         return (
-          <Task
+          <TaskItem
             key={task.id}
             userInput={userInput}
             editingIndex={editingIndex}
