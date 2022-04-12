@@ -4,17 +4,15 @@ import { ITaskItem, FilterKind } from './types';
 
 interface TaskDashboardProps {
   taskList: ITaskItem[];
-  userInput: string;
   editingIndex: string;
   removeTask: (taskID: string) => void;
   checkTaskBox: (taskID: string) => void;
   startEditing: (taskID: string) => void;
-  editTask: (input: string, taskID: string) => void;
+  editTask: (taskID: string) => void;
 }
 
 export default function TaskDashboard({
   taskList,
-  userInput,
   editingIndex,
   removeTask,
   checkTaskBox,
@@ -75,15 +73,12 @@ export default function TaskDashboard({
         return (
           <TaskItem
             key={task.id}
-            userInput={userInput}
             editingIndex={editingIndex}
             taskData={task}
             checkTaskBox={(taskID: string) => checkTaskBox(taskID)}
             removeTask={(taskID: string) => removeTask(taskID)}
             startEditing={(taskID: string) => startEditing(taskID)}
-            editTask={(input: string, taskID: string) =>
-              editTask(input, taskID)
-            }
+            editTask={(taskID: string) => editTask(taskID)}
           />
         );
       })}

@@ -5,7 +5,7 @@ interface AddItemFormProps {
   userInput: string;
   addTask: () => void;
   setUserInput: (input: string) => void;
-  editTask: (input: string, taskID: string) => void;
+  editTask: (taskID: string) => void;
 }
 
 export default function AddItemForm({
@@ -19,13 +19,12 @@ export default function AddItemForm({
     e.preventDefault();
 
     if (editingIndex) {
-      editTask(userInput, editingIndex);
+      editTask(editingIndex);
       return;
     }
 
     if (userInput) {
       addTask();
-      setUserInput('');
     }
   }
 

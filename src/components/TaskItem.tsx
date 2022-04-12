@@ -3,17 +3,15 @@ import { ITaskItem } from './types';
 
 interface TaskItemProps {
   taskData: ITaskItem;
-  userInput: string;
   editingIndex: string;
   removeTask: (taskID: string) => void;
   checkTaskBox: (taskID: string) => void;
   startEditing: (taskID: string) => void;
-  editTask: (input: string, taskID: string) => void;
+  editTask: (taskID: string) => void;
 }
 
 function TaskItem({
   taskData,
-  userInput,
   editingIndex,
   removeTask,
   checkTaskBox,
@@ -43,7 +41,7 @@ function TaskItem({
             className="btn"
             onClick={() =>
               editingIndex === taskData.id
-                ? editTask(userInput, editingIndex)
+                ? editTask(editingIndex)
                 : startEditing(taskData.id)
             }
           >

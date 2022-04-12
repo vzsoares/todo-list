@@ -17,6 +17,7 @@ function App() {
       id: String(new Date().valueOf()),
     };
     setTaskList([...taskList, newTask]);
+    setUserInput('');
   }
 
   function removeTask(taskID: string) {
@@ -28,11 +29,11 @@ function App() {
     setEditingIndex(taskID);
   }
 
-  function editTask(input: string, taskID: string) {
+  function editTask(taskID: string) {
     setTaskList(
       taskList.map((task) => {
         if (task.id === taskID) {
-          return { ...task, task: input };
+          return { ...task, task: userInput };
         }
         return task;
       }),
@@ -60,15 +61,14 @@ function App() {
         editingIndex={editingIndex}
         setUserInput={setUserInput}
         addTask={() => addTask()}
-        editTask={(input: string, taskID: string) => editTask(input, taskID)}
+        editTask={(taskID: string) => editTask(taskID)}
       />
       <TaskDashboard
-        userInput={userInput}
         editingIndex={editingIndex}
         taskList={taskList}
         checkTaskBox={(taskID: string) => checkTaskBox(taskID)}
         removeTask={(taskID: string) => removeTask(taskID)}
-        editTask={(input: string, taskID: string) => editTask(input, taskID)}
+        editTask={(taskID: string) => editTask(taskID)}
         startEditing={(taskID: string) => startEditing(taskID)}
       />
     </div>
