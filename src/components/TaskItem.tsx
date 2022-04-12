@@ -1,7 +1,7 @@
 import React from 'react';
 import { ITaskItem } from './types';
 
-interface TaskDataProps {
+interface TaskItemProps {
   taskData: ITaskItem;
   userInput: string;
   editingIndex: string;
@@ -19,7 +19,7 @@ function TaskItem({
   checkTaskBox,
   startEditing,
   editTask,
-}: TaskDataProps) {
+}: TaskItemProps) {
   return (
     <ul
       className="todo-list stack-large stack-exception"
