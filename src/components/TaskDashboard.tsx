@@ -1,24 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import TaskItem from './TaskItem';
 import { ITaskItem, FilterKind } from './types';
+import { AppContext } from '../AppContext';
 
-interface TaskDashboardProps {
-  taskList: ITaskItem[];
-  editingIndex: string;
-  removeTask: (taskID: string) => void;
-  checkTaskBox: (taskID: string) => void;
-  startEditing: (taskID: string) => void;
-  editTask: (taskID: string) => void;
-}
-
-export default function TaskDashboard({
-  taskList,
-  editingIndex,
-  removeTask,
-  checkTaskBox,
-  startEditing,
-  editTask,
-}: TaskDashboardProps) {
+export default function TaskDashboard() {
+  const { taskList } = useContext(AppContext);
   const [filter, setFilter] = useState<FilterKind>('All');
   const [displayedTasks, setDisplayedTasks] = useState<ITaskItem[]>(taskList);
 
@@ -27,16 +13,17 @@ export default function TaskDashboard({
       setDisplayedTasks(taskList);
     }
     if (filter === 'Active') {
-      setDisplayedTasks(taskList.filter((task) => !task.completed));
+      setDisplayedTasks(taskList.filter((task: ITaskItem) => !task.completed));
     }
     if (filter === 'Complete') {
-      setDisplayedTasks(taskList.filter((task) => task.completed));
+      setDisplayedTasks(taskList.filter((task: ITaskItem) => task.completed));
     }
   }
 
   useEffect(() => {
     filterDisplayedTasks();
   }, [filter, taskList]);
+
   return (
     <>
       <div className="filters btn-group stack-exception">
@@ -70,17 +57,7 @@ export default function TaskDashboard({
       </div>
       <h2 id="list-heading">Tasks remaining</h2>
       {displayedTasks.map((task) => {
-        return (
-          <TaskItem
-            key={task.id}
-            editingIndex={editingIndex}
-            taskData={task}
-            checkTaskBox={(taskID: string) => checkTaskBox(taskID)}
-            removeTask={(taskID: string) => removeTask(taskID)}
-            startEditing={(taskID: string) => startEditing(taskID)}
-            editTask={(taskID: string) => editTask(taskID)}
-          />
-        );
+        return <TaskItem key={task.id} taskData={task} />;
       })}
     </>
   );
