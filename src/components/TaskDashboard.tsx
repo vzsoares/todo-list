@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import TaskItem from './TaskItem';
 import { ITaskItem, FilterKind } from './types';
-import { AppContext } from '../AppContext';
+import { TodoContext } from '../TodoContext';
 
 export default function TaskDashboard() {
-  const { taskList } = useContext(AppContext);
+  const { taskList } = useContext(TodoContext);
   const [filter, setFilter] = useState<FilterKind>('All');
   const [displayedTasks, setDisplayedTasks] = useState<ITaskItem[]>(taskList);
 
@@ -13,10 +13,10 @@ export default function TaskDashboard() {
       setDisplayedTasks(taskList);
     }
     if (filter === 'Active') {
-      setDisplayedTasks(taskList.filter((task: ITaskItem) => !task.completed));
+      setDisplayedTasks(taskList.filter((task) => !task.completed));
     }
     if (filter === 'Complete') {
-      setDisplayedTasks(taskList.filter((task: ITaskItem) => task.completed));
+      setDisplayedTasks(taskList.filter((task) => task.completed));
     }
   }
 

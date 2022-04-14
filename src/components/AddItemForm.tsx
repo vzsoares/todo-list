@@ -1,9 +1,9 @@
 import React from 'react';
-import { AppContext } from '../AppContext';
+import { TodoContext } from '../TodoContext';
 
 export default function AddItemForm() {
   return (
-    <AppContext.Consumer>
+    <TodoContext.Consumer>
       {(context) => {
         function handleAddTask(e: React.FormEvent<HTMLFormElement>) {
           e.preventDefault();
@@ -40,6 +40,6 @@ export default function AddItemForm() {
           </form>
         );
       }}
-    </AppContext.Consumer>
+    </TodoContext.Consumer>
   );
 }

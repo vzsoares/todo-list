@@ -1,10 +1,10 @@
 import React from 'react';
 import { ITaskItem } from './types';
-import { AppContext } from '../AppContext';
+import { TodoContext } from '../TodoContext';
 
 function TaskItem({ taskData }: { taskData: ITaskItem }) {
   return (
-    <AppContext.Consumer>
+    <TodoContext.Consumer>
       {(context) => {
         return (
           <ul
@@ -48,7 +48,7 @@ function TaskItem({ taskData }: { taskData: ITaskItem }) {
           </ul>
         );
       }}
-    </AppContext.Consumer>
+    </TodoContext.Consumer>
   );
 }
 export default TaskItem;

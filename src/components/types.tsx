@@ -4,7 +4,7 @@ export interface ITaskItem {
   id: string;
 }
 
-export interface IAppContextData {
+export interface ITodoContextData {
   editingIndex: string;
   userInput: string;
   taskList: ITaskItem[];

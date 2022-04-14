@@ -1,21 +1,25 @@
 import React, { useState, createContext, useMemo, ReactNode } from 'react';
-import { ITaskItem, IAppContextData } from './components/types';
+import { ITaskItem, ITodoContextData } from './components/types';
 
-const defaultContext = {
+const defaultTodoContextData: ITodoContextData = {
   userInput: '',
   editingIndex: '',
   taskList: [{ task: '', completed: false, id: '' }],
-  addTask() {},
-  setUserInput() {},
-  editTask() {},
-  removeTask() {},
-  startEditing() {},
-  checkTaskBox() {},
+  addTask: () => {},
+  setUserInput: () => {},
+  editTask: () => {},
+  removeTask: () => {},
+  startEditing: () => {},
+  checkTaskBox: () => {},
 };
 
-const AppContext = createContext<IAppContextData>(defaultContext);
+const TodoContext = createContext<ITodoContextData>(defaultTodoContextData);
 
-function AppContextProvider({ children }: { children: ReactNode }) {
+interface TodoContextProviderProps {
+  children: ReactNode;
+}
+
+function TodoContextProvider({ children }: TodoContextProviderProps) {
   const [taskList, setTaskList] = useState<ITaskItem[]>([]);
   const [userInput, setUserInput] = useState<string>('');
   const [editingIndex, setEditingIndex] = useState<string>('');
@@ -63,7 +67,7 @@ function AppContextProvider({ children }: { children: ReactNode }) {
     );
   }
 
-  const AppContextData = useMemo<IAppContextData>(() => {
+  const todoContextData = useMemo<ITodoContextData>(() => {
     return {
       userInput,
       editingIndex,
@@ -78,8 +82,10 @@ function AppContextProvider({ children }: { children: ReactNode }) {
   }, [userInput, editingIndex, taskList]);
 
   return (
-    <AppContext.Provider value={AppContextData}>{children}</AppContext.Provider>
+    <TodoContext.Provider value={todoContextData}>
+      {children}
+    </TodoContext.Provider>
   );
 }
 
-export { AppContextProvider, AppContext };
+export { TodoContextProvider, TodoContext };
