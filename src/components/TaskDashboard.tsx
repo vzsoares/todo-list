@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import TaskItem from './TaskItem';
 import { ITaskItem, FilterKind } from './types';
-import { TodoContext } from '../TodoContext';
+import { useTodoContext } from '../TodoContext';
 
 export default function TaskDashboard() {
-  const { taskList } = useContext(TodoContext);
+  const { taskList } = useTodoContext();
   const [filter, setFilter] = useState<FilterKind>('All');
   const [displayedTasks, setDisplayedTasks] = useState<ITaskItem[]>(taskList);
 

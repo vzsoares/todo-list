@@ -1,4 +1,10 @@
-import React, { useState, createContext, useMemo, ReactNode } from 'react';
+import React, {
+  useState,
+  createContext,
+  useMemo,
+  ReactNode,
+  useContext,
+} from 'react';
 import { ITaskItem, ITodoContextData } from './components/types';
 
 const defaultTodoContextData: ITodoContextData = {
@@ -88,4 +94,8 @@ function TodoContextProvider({ children }: TodoContextProviderProps) {
   );
 }
 
-export { TodoContextProvider, TodoContext };
+function useTodoContext() {
+  return useContext(TodoContext);
+}
+
+export { TodoContextProvider, useTodoContext, TodoContext };
