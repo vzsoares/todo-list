@@ -1,31 +1,20 @@
 import React from 'react';
+import { useTodoContext } from '../TodoContext';
 
-interface AddItemFormProps {
-  editingIndex: string;
-  userInput: string;
-  addTask: () => void;
-  setUserInput: (input: string) => void;
-  editTask: (input: string, taskID: string) => void;
-}
+export default function AddItemForm() {
+  const { editingIndex, userInput, editTask, addTask, setUserInput } =
+    useTodoContext();
 
-export default function AddItemForm({
-  editingIndex,
-  userInput,
-  addTask,
-  setUserInput,
-  editTask,
-}: AddItemFormProps) {
   function handleAddTask(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     if (editingIndex) {
-      editTask(userInput, editingIndex);
+      editTask(editingIndex);
       return;
     }
 
     if (userInput) {
       addTask();
-      setUserInput('');
     }
   }
 

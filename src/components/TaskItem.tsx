@@ -1,25 +1,15 @@
 import React from 'react';
 import { ITaskItem } from './types';
+import { useTodoContext } from '../TodoContext';
 
 interface TaskItemProps {
   taskData: ITaskItem;
-  userInput: string;
-  editingIndex: string;
-  removeTask: (taskID: string) => void;
-  checkTaskBox: (taskID: string) => void;
-  startEditing: (taskID: string) => void;
-  editTask: (input: string, taskID: string) => void;
 }
 
-function TaskItem({
-  taskData,
-  userInput,
-  editingIndex,
-  removeTask,
-  checkTaskBox,
-  startEditing,
-  editTask,
-}: TaskItemProps) {
+function TaskItem({ taskData }: TaskItemProps) {
+  const { editingIndex, removeTask, checkTaskBox, editTask, startEditing } =
+    useTodoContext();
+
   return (
     <ul
       className="todo-list stack-large stack-exception"
@@ -43,7 +33,7 @@ function TaskItem({
             className="btn"
             onClick={() =>
               editingIndex === taskData.id
-                ? editTask(userInput, editingIndex)
+                ? editTask(editingIndex)
                 : startEditing(taskData.id)
             }
           >
