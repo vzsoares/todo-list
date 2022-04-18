@@ -98,4 +98,4 @@ function useTodoContext() {
   return useContext(TodoContext);
 }
 
-export { TodoContextProvider, useTodoContext, TodoContext };
+export { TodoContextProvider, useTodoContext };
