@@ -2,7 +2,7 @@
 
 <p align="center">
 <a href='https://vzsoares.github.io/todo-list/' target="_blank">
-live demo
+Live Demo
 </a>
 </p>
 
@@ -19,7 +19,7 @@ live demo
 
 ## A Tarefa :
 
-Para esse projeto foi pedido aos participantes que fizessem uma Todo list (lista de tarefas) em **React** utilizando também **typescript** com as funcionalidades de adicionar/remover/editar/filtrar tarefas.
+Para esse projeto foi pedido aos participantes que fizessem uma Todo list (lista de tarefas) em **React** utilizando uma linguagem fortemente tipada, o **typescript** tornando a aplicação mais previsível durante seu desenvolvimento, com as funcionalidades de adicionar/remover/editar/filtrar tarefas.
 
 As funcionalidades também deveriam ser feitas uma a uma e antes de ir para a proxima o estudante deveria fazer um Pull Request e aguardar a aprovação de um mentor e de algum colega.
 
@@ -49,7 +49,7 @@ Para filtrar as tarefas da interface sem alterar a lista original bastou apenas 
 
 ### Implementar context
 
-Após toda a lógica funcionando , a implementação do context foi rápida ajudou bastante no problema de "prop drilling", resumindo boa parte das funções e variáveis em um arquivo exclusivo para o context e passando-as através de um provider e useContext ao longo da aplicação.
+Devido a grande quantidade de props ao longo da aplicação foi decidido utilizar contextAPI e após toda a lógica funcionando , a implementação do context foi rápida ajudou bastante no problema de "prop drilling", resumindo boa parte das funções e variáveis em um arquivo exclusivo para o context e passando-as através de um provider e useContext ao longo da aplicação.
 
 ---
 
