@@ -19,7 +19,13 @@ Live Demo
 
 ## A Tarefa :
 
-Para esse projeto foi pedido aos participantes que fizessem uma Todo list (lista de tarefas) em **React** utilizando uma linguagem fortemente tipada, o **typescript** tornando a aplicação mais previsível durante seu desenvolvimento, com as funcionalidades de adicionar/remover/editar/filtrar tarefas.
+Para esse projeto foi requisitado aos participantes que fizessem uma Todo list (lista de tarefas) em **React** utilizando uma linguagem fortemente tipada, o **typescript** tornando a aplicação mais previsível durante seu desenvolvimento.
+Contendo também as funcionalidades de :
+
+- adicionar
+- remover
+- editar
+- filtrar
 
 As funcionalidades também deveriam ser feitas uma a uma e antes de ir para a proxima o estudante deveria fazer um Pull Request e aguardar a aprovação de um mentor e de algum colega.
 
@@ -29,7 +35,7 @@ As funcionalidades também deveriam ser feitas uma a uma e antes de ir para a pr
 
 Como mencionado acima o projeto deveria ser feito dividido em etapas , pessoalmente decidi dividir entre adicionar , remover , editar , filtrar e por fim implementar context.
 
-Vamos falar um pouco sobre a resolução de cada tarefa:
+A seguir,uma breve descrição de cada tarefa:
 
 ### Adicionar tarefas:
 
@@ -49,7 +55,7 @@ Para filtrar as tarefas da interface sem alterar a lista original bastou apenas 
 
 ### Implementar context
 
-Devido a grande quantidade de props ao longo da aplicação foi decidido utilizar contextAPI e após toda a lógica funcionando , a implementação do context foi rápida ajudou bastante no problema de "prop drilling", resumindo boa parte das funções e variáveis em um arquivo exclusivo para o context e passando-as através de um provider e useContext ao longo da aplicação.
+Devido a grande quantidade de props ao longo da aplicação foi decidido utilizar contextAPI e após toda a lógica funcionando , a implementação do context foi rápida ajudou no problema de "prop drilling", resumindo boa parte das funções e variáveis em um arquivo exclusivo para o context e passando-as através de um provider e useContext ao longo da aplicação.
 
 ---
 
@@ -61,7 +67,7 @@ Algumas possíveis melhorias seriam:
 
 - armazenar os dados da lista possibilitando seu uso a longo prazo
 
-- sistema de autenticação em conjunto com o banco de dados
+- sistema de autenticação em conjunto ao banco de dados
 
 ---
 
@@ -71,6 +77,11 @@ Para explorar o código localmente você precisa:
 
 - node
 - yarn
-- clonar o repositório
-- instalar as dependências através de `yarn install`
-- inicializar build de desenvolvedor com o comando `yarn dev`
+
+```bash
+# instalar dependências do projeto
+yarn install
+
+# Inicializa build de desenvolvedor
+yarn dev
+```
