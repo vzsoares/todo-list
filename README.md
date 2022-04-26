@@ -82,6 +82,6 @@ Para explorar o código localmente você precisa:
 # instalar dependências do projeto
 yarn install
 
-# Inicializa build de desenvolvedor
+# Inicializar build de desenvolvedor
 yarn dev
 ```
